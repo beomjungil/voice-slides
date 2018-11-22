@@ -1,0 +1,47 @@
+{
+  "name": "voice-slides",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@types/jest": "23.3.9",
+    "@types/styled-components": "^4.1.0",
+    "mobx": "^5.6.0",
+    "mobx-react": "^5.4.2",
+    "pdfjs": "^2.1.0",
+    "pdfjs-dist": "^2.0.943",
+    "react": "^16.6.3",
+    "react-dom": "^16.6.3",
+    "react-dropzone": "^7.0.1",
+    "react-full-screen": "^0.2.3",
+    "react-pdf": "^3.0.5",
+    "react-pdf-js": "^4.0.1",
+    "react-scripts": "2.1.1",
+    "react-transition-group": "^2.5.0",
+    "shortid": "^2.2.14",
+    "styled-components": "^4.1.1",
+    "typescript": "3.1.6",
+    "zeroth-js": "github:goodatlas/zeroth-js"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ],
+  "devDependencies": {
+    "@types/node": "^10.12.9",
+    "@types/react": "^16.7.6",
+    "@types/react-dom": "^16.0.9",
+    "@types/react-transition-group": "^2.0.14",
+    "@types/shortid": "0.0.29"
+  }
+}
