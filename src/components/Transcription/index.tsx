@@ -18,8 +18,8 @@ class ZerothController extends Component<InjectedProps, {}> {
   constructor(props: any) {
     super(props);
     this.zeroth = new ZerothMic({
-      appId: 'd8e3cfc44b7b4bd7a2aa25dec58c9700',
-      appSecret: 'QD52ml1O39b9590dade74a47a0bd352c15b9ce45',
+      appId: 'c112ec6898bf49b58d24348f226e1f7a',
+      appSecret: 'JQE6ZJQx9d84ec7abbf94b65bff35d88273c23e3',
       language: 'kor',
       debug: true
     });
