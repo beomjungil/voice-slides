@@ -13,10 +13,10 @@ export const CaptionItem = styled.p`
   flex: 0 0 auto;
   display: inline-block;
   margin: 0 0 0.25em;
-  transition: opacity .5s cubic-bezier(0.455, 0.03, 0.515, 0.955);
-  opacity: ${(props: ICaptionItemProps) => props.transition === 'exiting'
-      ? '0'
-      : '1'};
+  transition: opacity 0.5s cubic-bezier(0.455, 0.03, 0.515, 0.955);
+  opacity: ${(props: ICaptionItemProps) =>
+    props.transition === 'exiting' ? '0' : '1'};
+  font-size: calc(10px + 2vmin);
 `;
 
 export const FinalCaption = styled.span`

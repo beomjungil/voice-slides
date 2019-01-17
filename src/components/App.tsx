@@ -1,16 +1,13 @@
+/// <reference path="./module.d.ts" />
+
 import React, { Component } from 'react';
-import './App.css';
-// import FileDropZone from './FileDropzone';
-import Slides from './Slides';
+import Presentation from './Presentation';
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          {/* <FileDropZone /> */}
-          <Slides />
-        </header>
+      <div>
+        <Presentation/>
       </div>
     );
   }

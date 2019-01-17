@@ -7,8 +7,10 @@ import * as Styled from './styles';
 import { inject, observer } from 'mobx-react';
 import { SlideStore } from '../../stores/slideStore';
 import CaptionList from '../CaptionList';
-import { TranscriptionStore } from '../../stores/transcriptionStore';
-import ZerothController from '../Transcription';
+import { Box, Flex } from '@rebass/grid';
+import TranscriptionList from '../TranscriptionList';
+import ZerothController from '../ZerothController';
+import MaterialIcon from 'material-icons-react';
 
 interface InjectedProps {
   slideStore?: SlideStore;
@@ -57,48 +59,57 @@ class Slides extends Component<InjectedProps, {}> {
   };
 
   goFull = () => {
-    this.setState({ isFull: true });
+    this.setState({ isFull: !this.state.isFull });
   };
 
   render() {
-    const { numPages } = this.state;
+    const { numPages, isFull } = this.state;
     const { pageNumber } = this.props.slideStore as SlideStore;
-    return (
-      <div>
-        <nav>
-          <button onClick={this.goToPrevPage}>Prev</button>
-          <button onClick={this.goToNextPage}>Next</button>
-          <button onClick={this.goFull}>Go Fullscreen</button>
-        </nav>
-        <Fullscreen
-          enabled={this.state.isFull}
-          onChange={this.handleFullscreen}
-        >
-          <Styled.SlideHolder isFull={this.state.isFull}>
-            <Document
-              file="/test.pdf"
-              onLoadSuccess={this.onDocumentLoadSuccess}
-            >
-              <Page
-                pageNumber={pageNumber}
-                width={this.state.isFull ? window.innerWidth : 600}
-              />
-            </Document>
-            <p
-              style={
-                this.state.isFull
-                  ? { position: 'absolute', bottom: '0' }
-                  : { position: 'relative' }
-              }
-            >
-              Page {pageNumber} of {numPages}
-            </p>
-            <CaptionList />
-            <ZerothController />
-          </Styled.SlideHolder>
+    return <div>
+        <Fullscreen enabled={isFull} onChange={this.handleFullscreen}>
+          <Flex>
+            <Box width={isFull ? '100vw' : 720} flex="0 0 auto">
+              <Styled.SlideHolder isFull={isFull}>
+                <Document file="/test.pdf" onLoadSuccess={this.onDocumentLoadSuccess}>
+                  <Page pageNumber={pageNumber} width={isFull ? window.innerWidth : 720} />
+                </Document>
+              </Styled.SlideHolder>
+              {isFull && <CaptionList />}
+              <Styled.ControlBar isFull={isFull}>
+                <nav>
+                  <Styled.EmptyButton onClick={this.goToPrevPage}>
+                    <MaterialIcon icon="skip_previous" />
+                  </Styled.EmptyButton>
+                  <Styled.EmptyButton onClick={this.goToNextPage}>
+                    <MaterialIcon icon="skip_next" />
+                  </Styled.EmptyButton>
+                  <Styled.EmptyButton onClick={this.goFull}>
+                    {isFull ? (
+                      <MaterialIcon icon="fullscreen" />
+                    ) : (
+                      <MaterialIcon icon="fullscreen_exit" />
+                    )}
+                  </Styled.EmptyButton>
+                </nav>
+
+                <p>
+                  Page {pageNumber} of {numPages}
+                </p>
+              </Styled.ControlBar>
+              {!isFull && <Styled.ZerothControlBar isFull={isFull}>
+                  <ZerothController />
+                </Styled.ZerothControlBar>}
+            </Box>
+
+            {!isFull && <>
+                <Styled.Gap size="1rem" />
+                <Box flex="1 1 auto">
+                  <TranscriptionList />
+                </Box>
+              </>}
+          </Flex>
         </Fullscreen>
-      </div>
-    );
+      </div>;
   }
 }
 
